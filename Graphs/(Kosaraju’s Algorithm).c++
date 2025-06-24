@@ -4,7 +4,6 @@
 #include <vector>
 using namespace std;
 
-// Corrected: dfs function was wrongly referred as bfs in your original code
 void dfs(int node, unordered_map<int, bool> &visited, stack<int> &st, unordered_map<int, list<int>> &adjlist) {
     visited[node] = true;
     for (auto neighbour : adjlist[node]) {
@@ -19,7 +18,7 @@ void dfs(int node, unordered_map<int, bool> &visited, stack<int> &st, unordered_
 void revdfs(int node, unordered_map<int, bool> &visited, unordered_map<int, list<int>> &adjlist) {
     visited[node] = true;
     for (auto neighbour : adjlist[node]) {
-        if (!visited[neighbour]) {  // Corrected: was checking node again instead of neighbour
+        if (!visited[neighbour]) { 
             revdfs(neighbour, visited, adjlist);
         }
     }
@@ -29,14 +28,14 @@ int stronglyConnectedComponents(int v, vector<vector<int>> &edges) {
     unordered_map<int, list<int>> adjlist;
     for (int i = 0; i < edges.size(); i++) {
         int u = edges[i][0];
-        int v_ = edges[i][1];  // Renamed v to v_ to avoid shadowing the outer 'v'
+        int v_ = edges[i][1]; 
         adjlist[u].push_back(v_);
     }
 
     // Topo sort
     stack<int> st;
     unordered_map<int, bool> visited;
-    for (int i = 0; i < v; i++) {  // Corrected: added missing `int`
+    for (int i = 0; i < v; i++) {  
         if (!visited[i]) {
             dfs(i, visited, st, adjlist);
         }
