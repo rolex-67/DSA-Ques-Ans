@@ -57,7 +57,7 @@ int stronglyConnectedComponents(int v, vector<vector<int>> &edges) {
         st.pop();
         if (!visited[top]) {
             count++;
-            revdfs(top, visited, transpose);  // Corrected: removed 'st' from argument, it?s not used in revdfs
+            revdfs(top, visited, transpose);  
         }
     }
     return count;
