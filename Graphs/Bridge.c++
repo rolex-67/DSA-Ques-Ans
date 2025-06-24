@@ -8,7 +8,6 @@ void dfs(int node ,int parent,int timer,vector<int> &discoverytime,vector<int> &
     for(auto neighbour: adjlist[node]){
         if(neighbour==parent)
             continue; 
-        
         if(!visited[neighbour]){
             dfs(neighbour,node,timer,discoverytime,earliesttime,result,adjlist,visited);
             earliesttime[node]=min(earliesttime[node],earliesttime[neighbour]);
@@ -25,20 +24,13 @@ void dfs(int node ,int parent,int timer,vector<int> &discoverytime,vector<int> &
             earliesttime[node]=min(earliesttime[node],discoverytime[neighbour]);
 
         }
-        
     }
-
-
 }
-
-
-
 vector<vector<int>> findBridges(vector<vector<int>> &edges, int v, int e) {
     unordered_map<int,list<int>> adjlist;
     for(int i=0;i<edges.size();i++){
         int u=edges[i][0];
         int v=edges[i][1];
-
         adjlist[u].push_back(v);
         adjlist[v].push_back(u);
     }
@@ -59,6 +51,4 @@ vector<vector<int>> findBridges(vector<vector<int>> &edges, int v, int e) {
         }
     }
     return result;
-
-
 }
